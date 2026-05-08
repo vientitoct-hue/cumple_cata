@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Catalina</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background: linear-gradient(135deg, #c9a0e8 0%, #e8b4d8 100%);
+display:flex;
+justify-content:center;
+align-items:flex-start;
+min-height:100vh;
+padding:20px 10px 40px;
+font-family:'Nunito', sans-serif;
+}
+
+.card{
+width:100%;
+max-width:360px;
+}
+
+.invite-img{
+width:100%;
+display:block;
+border-radius:28px;
+box-shadow:0 8px 32px rgba(120,0,120,0.25);
+}
+
+.buttons-area{
+display:flex;
+gap:12px;
+margin-top:16px;
+}
+
+.btn{
+flex:1;
+padding:13px 8px;
+border:none;
+border-radius:50px;
+font-size:14px;
+font-weight:800;
+cursor:pointer;
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-family:'Nunito', sans-serif;
+color:white;
+}
+
+.btn-whatsapp{
+background:linear-gradient(135deg,#25d366,#128c4e);
+}
+
+.btn-map{
+background:linear-gradient(135deg,#d46dcf,#9a30b0);
+}
+
+.btn-music{
+width:100%;
+margin-top:12px;
+padding:13px 8px;
+border:none;
+border-radius:50px;
+background:linear-gradient(135deg,#f0a0d0,#c050a0);
+color:white;
+font-size:14px;
+font-weight:800;
+cursor:pointer;
+font-family:'Nunito', sans-serif;
+}
+
+.note{
+font-size:11px;
+color:#a040b8;
+text-align:center;
+margin-top:8px;
+font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img class="invite-img" src="foto.jpeg" alt="Invitación Catalina">
+
+<div class="buttons-area">
+
+<a href="https://wa.me/59167414092?text=Hola!%20Confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Catalina"
+target="_blank"
+class="btn btn-whatsapp">
+💬 Confirmar
+</a>
+
+<a href="https://maps.app.goo.gl/9a6mFKoXeGGFVRs2A"
+target="_blank"
+class="btn btn-map">
+📍 Ubicación
+</a>
+
+</div>
+
+<button class="btn-music" id="musicBtn">
+🎵 Reproducir música
+</button>
+
+<p class="note" id="musicNote"></p>
+
+</div>
+
+<audio id="bgMusic" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const audio = document.getElementById('bgMusic');
+const btn = document.getElementById('musicBtn');
+const note = document.getElementById('musicNote');
+
+let playing = false;
+
+btn.addEventListener('click', async () => {
+
+if(!playing){
+
+try{
+await audio.play();
+playing = true;
+btn.innerHTML = '⏸️ Pausar música';
+note.innerHTML = '🎵 Sonando en loop';
+}catch(error){
+note.innerHTML = '⚠️ Toca nuevamente para reproducir';
+}
+
+}else{
+
+audio.pause();
+playing = false;
+btn.innerHTML = '🎵 Reproducir música';
+note.innerHTML = '';
+
+}
+
+});
+</script>
+
+</body>
+</html>
